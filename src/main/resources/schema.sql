@@ -1,18 +1,26 @@
-create table CAR (
-  id IDENTITY primary key,
-  brand VARCHAR2(150),
-  model VARCHAR2(200),
-  power DOUBLE,
-  year_of_issue YEAR,
-  assessed_value DEC(20)
-);
-
-create table AIRPLANE (
-  id IDENTITY primary key,
-  brand VARCHAR2(150),
-  model VARCHAR2(200),
-  manufacturer VARCHAR2(500),
-  year_of_issue YEAR,
-  fuelCapacity INT,
-  seats INT
-);
+-- DROP TABLE IF EXISTS ASSESSMENTS;
+-- DROP TABLE IF EXISTS AIRPLANE;
+-- DROP TABLE IF EXISTS CAR;
+--
+-- create table CAR (
+--   id IDENTITY primary key,
+--   brand VARCHAR2(150),
+--   model VARCHAR2(200),
+--   power DOUBLE,
+-- );
+--
+-- create table AIRPLANE (
+--   id IDENTITY primary key,
+--   brand VARCHAR2(150),
+--   model VARCHAR2(200),
+--   manufacturer VARCHAR2(500),
+--   fuelCapacity INT,
+--   seats INT
+-- );
+--
+-- create table ASSESSMENTS (
+--   id IDENTITY primary key,
+--   object_id BIGINT,
+--   year_of_issue YEAR,
+--   assessed_value DEC(20)
+-- );

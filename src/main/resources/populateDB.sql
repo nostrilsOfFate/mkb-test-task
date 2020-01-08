@@ -1,0 +1,25 @@
+-- DELETE
+-- FROM ASSESSMENTS;
+-- DELETE
+-- FROM AIRPLANE;
+-- DELETE
+-- FROM CAR;
+--
+-- INSERT into CAR (id, brand, model, power)
+-- values ('1L', 'brand1CAR', 'model1CAR', 1.1),
+--        ('1L', 'brand2CAR', 'model1CAR', 1.2),
+--        ('1L', 'brand3CAR', 'model1CAR', 1.3),
+--        ('1L', 'brand4CAR', 'model1CAR', 1.4);
+--
+-- INSERT into AIRPLANE (id, brand, model, manufacturer, fuelCapacity, seats)
+-- values ('1L', 'brand1AIRPLANE', 'model1AIRPLANE', 'manuf1', 1, 1),
+--        ('1L', 'brand1AIRPLANE', 'model1AIRPLANE', 'manuf2', 2, 2),
+--        ('1L', 'brand1AIRPLANE', 'model1AIRPLANE', 'manuf3', 3, 3),
+--        ('1L', 'brand1AIRPLANE', 'model1AIRPLANE', 'manuf4', 4, 4);
+--
+--
+-- INSERT into ASSESSMENTS (id, object_id, year_of_issue, assessed_value)
+-- values ('1L', '1L', 2011, 1111111),
+--        ('1L', '2L', 2012, 22222222),
+--        ('1L', '3L', 2013, 33333333),
+--        ('1L', '4L', 2014, 44444444);

@@ -34,26 +34,28 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car fromDto(CarDto dto) {
-        return new Car(
-                dto.getId(),
-                dto.getBrand(),
-                dto.getModel(),
-                dto.getPower(),
-                dto.getYear(),
-                dto.getValue()
-        );
+//        return new Car(
+//                dto.getId(),
+//                dto.getBrand(),
+//                dto.getModel(),
+//                dto.getPower()
+////                dto.getYear(),
+////                dto.getValue()
+//        );
+        return null;
     }
 
     @Override
     public CarDto toDTO(Car car) {
-        return new CarDto(
-                car.getId(),
-                car.getBrand(),
-                car.getModel(),
-                car.getPower(),
-                car.getYear(),
-                car.getValue()
-        );
+//        return new CarDto(
+//                car.getId(),
+//                car.getBrand(),
+//                car.getModel(),
+//                car.getPower(),
+//                car.getYear(),
+//                car.getValue()
+//        );
+        return null;
     }
 
     @Override
