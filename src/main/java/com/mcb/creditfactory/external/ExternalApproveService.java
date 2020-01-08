@@ -18,15 +18,20 @@ public class ExternalApproveService {
 
 
     public int approve(CollateralObject object) {
-        if (object.getDate() == null ||object.getYear() == null || object.getValue() == null || object.getType() == null) {
+        if (object.getDate() == null || object.getYear() == null || object.getValue() == null || object.getType() == null) {
             return -1;
         }
 
         int code;
         switch (object.getType()) {
-            case CAR: code = approveCar(object); break;
-            case AIRPLANE: code = approvePlane(object); break;
-            default: code = -100;
+            case CAR:
+                code = approveCar(object);
+                break;
+            case AIRPLANE:
+                code = approvePlane(object);
+                break;
+            default:
+                code = -100;
         }
 
         return code;
