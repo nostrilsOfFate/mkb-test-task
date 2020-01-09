@@ -1,23 +1,20 @@
 package com.mcb.creditfactory.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.Hibernate;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@MappedSuperclass
 @Access(AccessType.FIELD)
 @Setter
 @Getter
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class AbstractBaseEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,27 +23,29 @@ public class AbstractBaseEntity {
 
     private String model;
 
-    @OneToMany(mappedBy = "object_id")
-    private List<Assessment> assessments;
+    @Column(name = "year_of_issue")
+    private Short year;
 
-    public String toString() {
-        return getClass().getSimpleName() + ":" + id;
+
+    public AbstractBaseEntity(Long id, String brand, String model, Short year) {
+        this(id, brand, model, year, Collections.emptyList());
     }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Assessment> assessments;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || !getClass().equals(Hibernate.getClass(o))) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         AbstractBaseEntity that = (AbstractBaseEntity) o;
-        return id != null && id.equals(that.id);
+        return id.equals(that.id) &&
+                Objects.equals(brand, that.brand) &&
+                Objects.equals(model, that.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, brand, model,assessments);
+        return Objects.hash(id, brand, model);
     }
 }

@@ -11,9 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonTypeName("assessment")
-public class AssessmentDto implements Collateral {
+public class AssessmentDto {
     private Long id;
-    private Long objectId;
-    private Short year;
     private BigDecimal assessedValue;
 }
