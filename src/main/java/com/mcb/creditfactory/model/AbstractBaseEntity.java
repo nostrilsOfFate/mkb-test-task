@@ -31,7 +31,7 @@ public class AbstractBaseEntity {
         this(id, brand, model, year, Collections.emptyList());
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Assessment> assessments;
 
     @Override

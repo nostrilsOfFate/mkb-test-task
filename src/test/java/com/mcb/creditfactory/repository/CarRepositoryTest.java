@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,9 +28,10 @@ class CarRepositoryTest {
 
     @Test
     void create() {
-        Car car = CarTestData.getNew();
-        Assessment assessment = new Assessment(null, new BigDecimal("233.34"), LocalDate.now());
-        assessmentRepository.save(assessment);
+        Car car = new Car(null, "brand", "model", (short) 2020, 1.2);
+        Assessment assessment = new Assessment(null, BigDecimal.valueOf(1000000), LocalDate.now());
+        Assessment asSaved = assessmentRepository.save(assessment);
+        assertNotNull(asSaved);
         car.setAssessments(Collections.singletonList(assessment));
         Car actual = repository.save(car);
         assertNotNull(actual);
@@ -61,7 +63,8 @@ class CarRepositoryTest {
         Car expected = repository.findById(1L).orElse(null);
         assertNotNull(expected);
         expected.setBrand("SUPER Brand");
-        repository.save(expected);
+        Car savedCar = repository.save(expected);
+        assertNotNull(savedCar);
         Car actual = repository.findById(1L).orElse(null);
         assertNotNull(actual);
         assertEquals(expected.getBrand(), actual.getBrand());

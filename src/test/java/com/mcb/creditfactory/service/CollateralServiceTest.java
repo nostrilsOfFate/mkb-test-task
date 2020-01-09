@@ -53,15 +53,16 @@ class CollateralServiceTest {
 
     @Test
     void saveOldCarCollateral() {
-        Car car = carRepository.findAll().get(0);
-        int numberOfAssess = car.getAssessments().size();
+        Car car = carRepository.findById(1L).orElse(null);
+        assertNotNull(car);
+        int expected = car.getAssessments().size();
         CarDto carDto = carService.toDTO(car);
         carDto.setValue(BigDecimal.valueOf(2000000));
-        assertNotNull(carDto);
         collateralService.saveCollateral(carDto);
-        Car carNew = carRepository.findAll().get(0);
-        int number2 = carNew.getAssessments().size();
-        assertEquals(numberOfAssess + 1, number2);
+        Car carNew = carRepository.findById(1L).orElse(null);
+        assertNotNull(carNew);
+        int actual = carNew.getAssessments().size();
+        assertEquals(expected + 1, actual);
     }
 
     @Test
@@ -74,29 +75,31 @@ class CollateralServiceTest {
 
     @Test
     void saveOldAirplaneCollateral() {
-        Airplane airplane = airplaneRepository.findAll().get(0);
-        int numberOfAssess = airplane.getAssessments().size();
+        Airplane airplane = airplaneRepository.findById(1L).orElse(null);
+        assertNotNull(airplane);
+        int expected = airplane.getAssessments().size();
         AirplaneDto airplaneDto = airplaneService.toDTO(airplane);
         airplaneDto.setValue(BigDecimal.valueOf(250000000));
-        assertNotNull(airplaneDto);
         collateralService.saveCollateral(airplaneDto);
-        Airplane airplaneNew = airplaneRepository.findAll().get(0);
-        int number2 = airplaneNew.getAssessments().size();
-        assertEquals(numberOfAssess+1,number2) ;
+        Airplane airplaneNew = airplaneRepository.findById(1L).orElse(null);
+        assertNotNull(airplaneNew);
+        int actual = airplaneNew.getAssessments().size();
+        assertEquals(expected + 1, actual);
     }
 
     @Test
     void getNewCarInfo() {
         CarDto carDto = new CarDto(1L, "brand1CAR", "model1CAR", 1.1, (short) 2010, BigDecimal.valueOf(44444444));
         assertNotNull(carDto);
-        assertEquals(collateralService.getInfo(carDto), carDto);
+        assertEquals(carDto, collateralService.getInfo(carDto));
     }
 
     @Test
     void getOldCarInfo() {
-        Car car = carRepository.findAll().get(0);
+        Car car = carRepository.findById(1L).orElse(null);
+        assertNotNull(car);
         CarDto carDto = carService.toDTO(car);
-        assertEquals(collateralService.getInfo(carDto), carDto);
+        assertEquals(carDto, collateralService.getInfo(carDto));
     }
 
     @Test
@@ -108,7 +111,7 @@ class CollateralServiceTest {
 
     @Test
     void getOldAirplaneInfo() {
-        Airplane airplane = airplaneRepository.findAll().get(0);
+        Airplane airplane = airplaneRepository.findById(1L).orElse(null);
         assertNotNull(airplane);
         AirplaneDto airplaneDto = airplaneService.toDTO(airplane);
         assertNotNull(airplaneDto);

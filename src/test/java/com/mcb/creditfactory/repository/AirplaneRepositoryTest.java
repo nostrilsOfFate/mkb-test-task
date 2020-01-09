@@ -28,15 +28,15 @@ class AirplaneRepositoryTest {
     @Test
     void create() {
         Airplane airplane = AirplaneTestData.getNew();
-        Assessment assessment = new Assessment(null, new BigDecimal("233.34"), LocalDate.now());
-        assessmentRepository.save(assessment);
+        Assessment assessment = new Assessment(null, BigDecimal.valueOf(240000000), LocalDate.now());
+        Assessment asSaved = assessmentRepository.save(assessment);
+        assertNotNull(asSaved);
         airplane.setAssessments(Collections.singletonList(assessment));
         Airplane actual = repository.save(airplane);
         assertNotNull(actual);
         assertNotNull(actual.getId());
         assertNotNull(actual.getAssessments());
     }
-
     @Test
     void getAll() {
         List<Airplane> airplanes = repository.findAll();
@@ -61,7 +61,8 @@ class AirplaneRepositoryTest {
         Airplane expected = repository.findById(1L).orElse(null);
         assertNotNull(expected);
         expected.setBrand("SUPER Brand");
-        repository.save(expected);
+        Airplane savedAirplane = repository.save(expected);
+        assertNotNull(savedAirplane);
         Airplane actual = repository.findById(1L).orElse(null);
         assertNotNull(actual);
         assertEquals(expected.getBrand(), actual.getBrand());
